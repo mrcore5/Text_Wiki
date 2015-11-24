@@ -47,7 +47,7 @@ class Text_Wiki_Render_Xhtml_Strong extends Text_Wiki_Render {
     {
         if ($options['type'] == 'start') {
             $css = $this->formatConf(' class="%s"', 'css');
-            return "tw<strong$css>";
+            return "<strong$css>";
         }
 
         if ($options['type'] == 'end') {
