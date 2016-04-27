@@ -385,10 +385,10 @@ class Text_Wiki {
     * @return $this
     * @see    self::__construct()
     */
-    function Text_Wiki($rules = null)
-    {
-        $this->__construct($rules);
-    }
+    #function Text_Wiki($rules = null)
+    #{
+    #    $this->__construct($rules);
+    #}
 
     /**
      * A fix for PHP5.

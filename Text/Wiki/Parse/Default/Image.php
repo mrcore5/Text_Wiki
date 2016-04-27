@@ -73,10 +73,10 @@ class Text_Wiki_Parse_Default_Image extends Text_Wiki_Parse {
      * @return The parser object
      * @access public
      */
-    function Text_Wiki_Parse_Default_Image(&$obj)
+    function __construct(&$obj)
     {
         $default = $this->conf;
-        parent::Text_Wiki_Parse($obj);
+        parent::__construct($obj);
 
         // convert the list of recognized schemes to a regex OR,
         $schemes = $this->getConf('schemes', $default['schemes']);
