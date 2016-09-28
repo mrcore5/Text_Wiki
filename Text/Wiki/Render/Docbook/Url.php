@@ -23,9 +23,9 @@
  * @version    Release: @package_version@
  * @link       http://pear.php.net/package/Text_Wiki_Docbook
  */
-class Text_Wiki_Render_Docbook_Url extends Text_Wiki_Render {
-
-    var $conf = array(
+class Text_Wiki_Render_Docbook_Url extends Text_Wiki_Render
+{
+    public $conf = array(
         'images' => true,
         'img_ext' => array('jpg', 'jpeg', 'gif', 'png'),
         'css_inline' => null,
@@ -47,7 +47,7 @@ class Text_Wiki_Render_Docbook_Url extends Text_Wiki_Render {
     *
     */
 
-    function token($options)
+    public function token($options)
     {
         // create local variables from the options array (text,
         // href, type)
@@ -73,17 +73,16 @@ class Text_Wiki_Render_Docbook_Url extends Text_Wiki_Render {
             $css = $this->formatConf(' class="%s"', 'css_img');
             $start = "<img$css src=\"$href\" alt=\"$text\" /><!-- ";
             $end = " -->";
-
         } else {
 
             // should we build a target clause?
             if ($href{0} == '#' ||
               strtolower(substr($href, 0, 7)) == 'mailto:') {
-              // targets not allowed for on-page anchors
+                // targets not allowed for on-page anchors
               // and mailto: links.
                 $target = '';
             } else {
-        // allow targets on non-anchor non-mailto links
+                // allow targets on non-anchor non-mailto links
                 $target = $this->getConf('target');
             }
 
@@ -114,7 +113,7 @@ class Text_Wiki_Render_Docbook_Url extends Text_Wiki_Render {
 
         if ($options['type'] == 'start') {
             $output = $start;
-        } else if ($options['type'] == 'end') {
+        } elseif ($options['type'] == 'end') {
             $output = $end;
         } else {
             $output = $start . $text . $end;
@@ -122,4 +121,3 @@ class Text_Wiki_Render_Docbook_Url extends Text_Wiki_Render {
         return $output;
     }
 }
-?>

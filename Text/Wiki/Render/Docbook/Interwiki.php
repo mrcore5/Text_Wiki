@@ -23,9 +23,9 @@
  * @version    Release: @package_version@
  * @link       http://pear.php.net/package/Text_Wiki_Docbook
  */
-class Text_Wiki_Render_Docbook_Interwiki extends Text_Wiki_Render {
-
-    var $conf = array(
+class Text_Wiki_Render_Docbook_Interwiki extends Text_Wiki_Render
+{
+    public $conf = array(
         'sites' => array(
             'MeatBall' => 'http://www.usemod.com/cgi-bin/mb.pl?%s',
             'Advogato' => 'http://advogato.org/%s',
@@ -47,7 +47,7 @@ class Text_Wiki_Render_Docbook_Interwiki extends Text_Wiki_Render {
     *
     */
 
-    function token($options)
+    public function token($options)
     {
         $text = $options['text'];
         if (isset($options['url'])) {
@@ -77,4 +77,3 @@ class Text_Wiki_Render_Docbook_Interwiki extends Text_Wiki_Render {
         return '<link xlink:href="' . $href . '">' . $text . '</link>';
     }
 }
-?>

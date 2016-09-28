@@ -1,23 +1,23 @@
 <?php
 
 /**
-* 
+*
 * Includes the contents of another PHP script into the source text.
-* 
+*
 * @category Text
-* 
+*
 * @package Text_Wiki
-* 
+*
 * @author Paul M. Jones <pmjones@php.net>
-* 
+*
 * @license LGPL
-* 
+*
 * @version $Id$
-* 
+*
 */
 
 /**
-* 
+*
 * This class implements a Text_Wiki_Parse_Default to include the results of a
 * script directly into the source at parse-time; thus, the output of the
 * script will be parsed by Text_Wiki.  This differs from the 'embed'
@@ -25,50 +25,50 @@
 * 'embed' content is not parsed by Text_Wiki.
 *
 * DANGER!
-* 
+*
 * This rule is inherently not secure; it allows cross-site scripting to
 * occur if the embedded output has <script> or other similar tags.  Be
 * careful.
 *
 * @category Text
-* 
+*
 * @package Text_Wiki
-* 
+*
 * @author Paul M. Jones <pmjones@php.net>
-* 
+*
 */
 
-class Text_Wiki_Parse_Default_Include extends Text_Wiki_Parse {
-    
-    var $conf = array(
+class Text_Wiki_Parse_Default_Include extends Text_Wiki_Parse
+{
+    public $conf = array(
         'base' => '/path/to/scripts/'
     );
     
-    var $file = null;
+    public $file = null;
     
-    var $output = null;
+    public $output = null;
     
-    var $vars = null;
+    public $vars = null;
 
     /**
-    * 
+    *
     * The regular expression used to find source text matching this
     * rule.
-    * 
+    *
     * @access public
-    * 
+    *
     * @var string
-    * 
+    *
     */
     
-    var $regex = '/(\[\[include )(.+?)( .+?)?(\]\])/i';
+    public $regex = '/(\[\[include )(.+?)( .+?)?(\]\])/i';
     
     
     /**
-    * 
+    *
     * Includes the results of the script directly into the source; the output
     * will subsequently be parsed by the remaining Text_Wiki rules.
-    * 
+    *
     * @access public
     *
     * @param array &$matches The array of matches from parse().
@@ -77,7 +77,7 @@ class Text_Wiki_Parse_Default_Include extends Text_Wiki_Parse {
     *
     */
     
-    function process(&$matches)
+    public function process(&$matches)
     {
         // save the file location
         $this->file = $this->getConf('base', './') . $matches[2];
@@ -97,4 +97,3 @@ class Text_Wiki_Parse_Default_Include extends Text_Wiki_Parse {
         return $this->output;
     }
 }
-?>

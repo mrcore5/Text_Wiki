@@ -25,10 +25,10 @@
  * @version    Release: @package_version@
  * @link       http://pear.php.net/package/Text_Wiki_Docbook
  */
-class Text_Wiki_Render_Docbook_Prefilter extends Text_Wiki_Render {
-    function token()
+class Text_Wiki_Render_Docbook_Prefilter extends Text_Wiki_Render
+{
+    public function token()
     {
         return '';
     }
 }
-?>

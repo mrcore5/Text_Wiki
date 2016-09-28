@@ -1,38 +1,38 @@
 <?php
 
 /**
-* 
-* Parses for an API function documentation block.
-* 
-* @category Text
-* 
-* @package Text_Wiki
-* 
-* @author Paul M. Jones <pmjones@php.net>
-* 
-* @license LGPL
-* 
-* @version $Id$
-* 
-*/
-
-/**
-* 
+*
 * Parses for an API function documentation block.
 *
 * @category Text
-* 
+*
 * @package Text_Wiki
-* 
+*
 * @author Paul M. Jones <pmjones@php.net>
-* 
+*
+* @license LGPL
+*
+* @version $Id$
+*
 */
 
-class Text_Wiki_Parse_Default_Function extends Text_Wiki_Parse {
+/**
+*
+* Parses for an API function documentation block.
+*
+* @category Text
+*
+* @package Text_Wiki
+*
+* @author Paul M. Jones <pmjones@php.net>
+*
+*/
 
-    var $regex = '/^(\<function\>)\n(.+)\n(\<\/function\>)(\s|$)/Umsi';
+class Text_Wiki_Parse_Default_Function extends Text_Wiki_Parse
+{
+    public $regex = '/^(\<function\>)\n(.+)\n(\<\/function\>)(\s|$)/Umsi';
     
-    function process(&$matches)
+    public function process(&$matches)
     {
         // default options
         $opts = array(
@@ -52,7 +52,7 @@ class Text_Wiki_Parse_Default_Function extends Text_Wiki_Parse {
                 continue;
             }
             
-            // find the first ':' on the line; the left part is the 
+            // find the first ':' on the line; the left part is the
             // type, the right part is the value. skip lines without
             // a ':' on them.
             $pos = strpos($line, ':');
@@ -66,7 +66,7 @@ class Text_Wiki_Parse_Default_Function extends Text_Wiki_Parse {
             $type = trim(substr($line, 0, $pos));
             $val = trim(substr($line, $pos+1));
             
-            switch($type) {
+            switch ($type) {
             
             case 'a':
             case 'access':
@@ -137,5 +137,3 @@ class Text_Wiki_Parse_Default_Function extends Text_Wiki_Parse {
         return $this->wiki->addToken($this->rule, $opts) . $matches[4];
     }
 }
-
-?>

@@ -28,8 +28,7 @@ require_once 'Text/Wiki/Render/Docbook/Wikilink.php';
  * @version    Release: @package_version@
  * @link       http://pear.php.net/package/Text_Wiki_Docbook
  */
-class Text_Wiki_Render_Docbook_Freelink extends Text_Wiki_Render_Docbook_Wikilink {
+class Text_Wiki_Render_Docbook_Freelink extends Text_Wiki_Render_Docbook_Wikilink
+{
     // renders identically to wikilinks, only the parsing is different :-)
 }
-
-?>

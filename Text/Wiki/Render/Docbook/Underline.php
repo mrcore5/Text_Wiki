@@ -23,9 +23,9 @@
  * @version    Release: @package_version@
  * @link       http://pear.php.net/package/Text_Wiki_Docbook
  */
-class Text_Wiki_Render_Docbook_Underline extends Text_Wiki_Render {
-
-    var $conf = array(
+class Text_Wiki_Render_Docbook_Underline extends Text_Wiki_Render
+{
+    public $conf = array(
         'role' => 'underline'
     );
 
@@ -42,7 +42,7 @@ class Text_Wiki_Render_Docbook_Underline extends Text_Wiki_Render {
     *
     */
 
-    function token($options)
+    public function token($options)
     {
         if ($options['type'] == 'end') {
             return '</emphasis>';
@@ -51,4 +51,3 @@ class Text_Wiki_Render_Docbook_Underline extends Text_Wiki_Render {
             ' role="' . $role . '"' : '') . '>';
     }
 }
-?>

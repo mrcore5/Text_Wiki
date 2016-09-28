@@ -23,9 +23,9 @@
  * @version    Release: @package_version@
  * @link       http://pear.php.net/package/Text_Wiki
  */
-class Text_Wiki_Render_Xhtml_Toc extends Text_Wiki_Render {
-
-    var $conf = array(
+class Text_Wiki_Render_Xhtml_Toc extends Text_Wiki_Render
+{
+    public $conf = array(
         'css_list' => null,
         'css_item' => null,
         'title' => '<strong>Table of Contents</strong>',
@@ -34,7 +34,7 @@ class Text_Wiki_Render_Xhtml_Toc extends Text_Wiki_Render {
         'collapse' => true
     );
 
-    var $min = 2;
+    public $min = 2;
 
     /**
     *
@@ -49,7 +49,7 @@ class Text_Wiki_Render_Xhtml_Toc extends Text_Wiki_Render {
     *
     */
 
-    function token($options)
+    public function token($options)
     {
         // type, id, level, count, attr
         extract($options);
@@ -85,9 +85,9 @@ class Text_Wiki_Render_Xhtml_Toc extends Text_Wiki_Render {
             break;
 
         case 'list_end':
-        	if ($this->getConf('collapse')) {
-        	    return "\n</div>\n</td></tr></table>\n\n";
-        	} else {
+            if ($this->getConf('collapse')) {
+                return "\n</div>\n</td></tr></table>\n\n";
+            } else {
                 return "\n</div>\n\n";
             }
             break;
@@ -113,4 +113,3 @@ class Text_Wiki_Render_Xhtml_Toc extends Text_Wiki_Render {
         }
     }
 }
-?>

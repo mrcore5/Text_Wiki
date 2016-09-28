@@ -49,7 +49,8 @@
 *
 */
 
-class Text_Wiki_Parse_Default_Url extends Text_Wiki_Parse {
+class Text_Wiki_Parse_Default_Url extends Text_Wiki_Parse
+{
 
 
     /**
@@ -62,7 +63,7 @@ class Text_Wiki_Parse_Default_Url extends Text_Wiki_Parse {
     *
     */
 
-    var $footnoteCount = 0;
+    public $footnoteCount = 0;
 
 
     /**
@@ -75,7 +76,7 @@ class Text_Wiki_Parse_Default_Url extends Text_Wiki_Parse {
     *
     */
 
-    var $conf = array(
+    public $conf = array(
         'schemes' => array(
             'http://',
             'https://',
@@ -97,7 +98,7 @@ class Text_Wiki_Parse_Default_Url extends Text_Wiki_Parse {
     *
     */
 
-    function __construct(&$obj)
+    public function __construct(&$obj)
     {
         parent::__construct($obj);
 
@@ -129,7 +130,7 @@ class Text_Wiki_Parse_Default_Url extends Text_Wiki_Parse {
     *
     */
 
-    function parse()
+    public function parse()
     {
         // -------------------------------------------------------------
         //
@@ -198,7 +199,7 @@ class Text_Wiki_Parse_Default_Url extends Text_Wiki_Parse {
     *
     */
 
-    function process(&$matches)
+    public function process(&$matches)
     {
         // set options
         $options = array(
@@ -228,7 +229,7 @@ class Text_Wiki_Parse_Default_Url extends Text_Wiki_Parse {
     *
     */
 
-    function processFootnote(&$matches)
+    public function processFootnote(&$matches)
     {
         // keep a running count for footnotes
         $this->footnoteCount++;
@@ -265,7 +266,7 @@ class Text_Wiki_Parse_Default_Url extends Text_Wiki_Parse {
     *
     */
 
-    function processDescr(&$matches)
+    public function processDescr(&$matches)
     {
         // set options
         $options = array(
@@ -278,4 +279,3 @@ class Text_Wiki_Parse_Default_Url extends Text_Wiki_Parse {
         return $this->wiki->addToken($this->rule, $options);
     }
 }
-?>

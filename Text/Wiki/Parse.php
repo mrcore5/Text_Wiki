@@ -37,7 +37,8 @@
  * @version    Release: @package_version@
  * @link       http://pear.php.net/package/Text_Wiki
  */
-class Text_Wiki_Parse {
+class Text_Wiki_Parse
+{
 
 
     /**
@@ -50,7 +51,7 @@ class Text_Wiki_Parse {
     *
     */
 
-    var $conf = array();
+    public $conf = array();
 
 
     /**
@@ -65,7 +66,7 @@ class Text_Wiki_Parse {
     *
     */
 
-    var $regex = null;
+    public $regex = null;
 
 
     /**
@@ -78,7 +79,7 @@ class Text_Wiki_Parse {
     *
     */
 
-    var $rule = null;
+    public $rule = null;
 
 
     /**
@@ -93,7 +94,7 @@ class Text_Wiki_Parse {
     * @var object
     */
 
-    var $wiki = null;
+    public $wiki = null;
 
 
     /**
@@ -106,7 +107,7 @@ class Text_Wiki_Parse {
     *
     */
 
-    function __construct(&$obj)
+    public function __construct(&$obj)
     {
         // set the reference to the calling Text_Wiki object;
         // this allows us access to the shared source text, token
@@ -117,18 +118,16 @@ class Text_Wiki_Parse {
         // to the tokens array. strip off the Text_Wiki_Parse_ portion.
         // text_wiki_parse_
         // 0123456789012345
-        list(,,,,$tmp) = explode("_", get_class($this));
+        list(, , , , $tmp) = explode("_", get_class($this));
         $this->rule = ucwords(strtolower($tmp));
 
         // override config options for the rule if specified
         if (isset($this->wiki->parseConf[$this->rule]) &&
             is_array($this->wiki->parseConf[$this->rule])) {
-
             $this->conf = array_merge(
                 $this->conf,
                 $this->wiki->parseConf[$this->rule]
             );
-
         }
     }
 
@@ -147,7 +146,7 @@ class Text_Wiki_Parse {
     *
     */
 
-    function parse()
+    public function parse()
     {
         $this->wiki->source = preg_replace_callback(
             $this->regex,
@@ -175,7 +174,7 @@ class Text_Wiki_Parse {
     *
     */
 
-    function process(&$matches)
+    public function process(&$matches)
     {
         return $matches[0];
     }
@@ -197,7 +196,7 @@ class Text_Wiki_Parse {
     *
     */
 
-    function getConf($key, $default = null)
+    public function getConf($key, $default = null)
     {
         if (isset($this->conf[$key])) {
             return $this->conf[$key];
@@ -229,7 +228,7 @@ class Text_Wiki_Parse {
     *
     */
 
-    function getAttrs($text)
+    public function getAttrs($text)
     {
         // find the =" sections;
         $tmp = explode('="', trim($text));
@@ -254,11 +253,8 @@ class Text_Wiki_Parse {
             $pos = strrpos($val, '"');
             $attrs[$key] = stripslashes(substr($val, 0, $pos));
             $key = trim(substr($val, $pos+1));
-
         }
 
         return $attrs;
-
     }
 }
-?>

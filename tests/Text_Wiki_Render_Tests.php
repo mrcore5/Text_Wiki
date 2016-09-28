@@ -8,13 +8,12 @@ require_once 'Text/Wiki/Render/Xhtml/Address.php';
 
 class Text_Wiki_Render_Test extends PHPUnit_Framework_TestCase
 {
-
     protected function setUp()
     {
         $obj = Text_Wiki::singleton();
         $this->obj = new Text_Wiki_Render($obj);
 
-        $this->conf = array('firstConf' => 'firstConfValue', 
+        $this->conf = array('firstConf' => 'firstConfValue',
                             'secondConf' => 'secondConfValue',
                             'thirdConf' => 'thirdConfValue',
                             'img_ext' => array('jpg', 'jpeg', 'gif', 'png'),
@@ -29,7 +28,7 @@ class Text_Wiki_Render_Test extends PHPUnit_Framework_TestCase
          * $this->format variables). That is why we are creating an instance of
          * Text_Wiki_Render_Xhtml and Text_Wiki_Render_Xhtml_Address instead. If you have a
          * better idea feel free to improve this test
-         */ 
+         */
         $wiki = Text_Wiki::singleton();
         
         $obj = new Text_Wiki_Render_Xhtml($wiki);
@@ -73,7 +72,7 @@ class Text_Wiki_Render_Test extends PHPUnit_Framework_TestCase
     {
         $this->obj->conf = $this->conf;
         $this->assertNull($this->obj->formatConf(' class="%s"', 'InvalidKey'));
-        $this->assertNull($this->obj->formatConf(' class="%s"', null));        
+        $this->assertNull($this->obj->formatConf(' class="%s"', null));
     }
 
     public function testUrlEncode()
@@ -92,7 +91,4 @@ class Text_Wiki_Render_Test extends PHPUnit_Framework_TestCase
         $text = "<a href='test'>Test</a>";
         $this->assertEquals("&lt;a href='test'&gt;Test&lt;/a&gt;", $this->obj->textEncode($text));
     }
-    
 }
-
-?>

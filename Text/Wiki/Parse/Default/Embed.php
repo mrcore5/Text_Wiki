@@ -1,25 +1,25 @@
 <?php
 
 /**
-* 
+*
 * Embeds the results of a PHP script at render-time.
-* 
+*
 * @category Text
-* 
+*
 * @package Text_Wiki
-* 
+*
 * @author Paul M. Jones <pmjones@php.net>
-* 
+*
 * @license LGPL
-* 
+*
 * @version $Id$
-* 
+*
 */
 
 /**
-* 
+*
 * Embeds the results of a PHP script at render-time.
-* 
+*
 * This class implements a Text_Wiki_Parse_Default to embed the contents of a URL
 * inside the page at render-time.  Typically used to get script output.
 * This differs from the 'include' rule, which incorporates results at
@@ -31,46 +31,46 @@
 * careful.
 *
 * @category Text
-* 
+*
 * @package Text_Wiki
-* 
+*
 * @author Paul M. Jones <pmjones@php.net>
-* 
+*
 */
 
-class Text_Wiki_Parse_Default_Embed extends Text_Wiki_Parse {
-    
-    var $conf = array(
+class Text_Wiki_Parse_Default_Embed extends Text_Wiki_Parse
+{
+    public $conf = array(
         'base' => '/path/to/scripts/'
     );
     
-    var $file = null;
+    public $file = null;
 
-    var $output = null;
+    public $output = null;
 
-    var $vars = null;
+    public $vars = null;
 
 
     /**
-    * 
+    *
     * The regular expression used to find source text matching this
     * rule.
-    * 
+    *
     * @access public
-    * 
+    *
     * @var string
-    * 
+    *
     */
     
-    var $regex = '/(\[\[embed )(.+?)( .+?)?(\]\])/i';
+    public $regex = '/(\[\[embed )(.+?)( .+?)?(\]\])/i';
     
     
     /**
-    * 
+    *
     * Generates a token entry for the matched text.  Token options are:
-    * 
+    *
     * 'text' => The full matched text, not including the <code></code> tags.
-    * 
+    *
     * @access public
     *
     * @param array &$matches The array of matches from parse().
@@ -80,8 +80,8 @@ class Text_Wiki_Parse_Default_Embed extends Text_Wiki_Parse {
     *
     */
     
-    function process(&$matches)
-    {    
+    public function process(&$matches)
+    {
         // save the file location
         $this->file = $this->getConf('base', './') . $matches[2];
         

@@ -1,26 +1,26 @@
 <?php
 
 /**
-* 
+*
 * Formats parsed Text_Wiki for LaTeX rendering.
-* 
+*
 * $Id$
-* 
+*
 * @author Jeremy Cowgar <jeremy@cowgar.com>
-* 
+*
 * @package Text_Wiki
-* 
+*
 * @todo [http://google.com] becomes 1 with a LaTeX footnote in subscript.
 *       This should be a normal LaTeX footnote associated with the
 *       previous word?
-* 
+*
 * @todo parse "..." to be ``...''
-* 
+*
 * @todo parse '...' to be `...'
-* 
+*
 * @todo move escape_latex to a static function, move escaping to the
 *       individual .php files they are associated with
-* 
+*
 * @todo allow the user to add conf items to do things like
 *       + A custom document header
 *       + Custom page headings
@@ -28,11 +28,13 @@
 *       + Set Title, Author, Date
 *       + Include a title page
 *       + Not output Document Head/Foot (maybe combinding many pages?)
-* 
+*
 */
 
-class Text_Wiki_Render_Latex extends Text_Wiki_Render {
-    function escape_latex ($txt) {
+class Text_Wiki_Render_Latex extends Text_Wiki_Render
+{
+    public function escape_latex($txt)
+    {
         $txt = str_replace("\\", "\\\\", $txt);
         $txt = str_replace('#', '\#', $txt);
         $txt = str_replace('$', '\$', $txt);
@@ -50,7 +52,8 @@ class Text_Wiki_Render_Latex extends Text_Wiki_Render {
         return $txt;
     }
 
-    function escape($tok, $ele) {
+    public function escape($tok, $ele)
+    {
         if (isset($tok[$ele])) {
             $tok[$ele] = $this->escape_latex($tok[$ele]);
         }
@@ -58,7 +61,7 @@ class Text_Wiki_Render_Latex extends Text_Wiki_Render {
         return $tok;
     }
     
-    function pre()
+    public function pre()
     {
         foreach ($this->wiki->tokens as $k => $tok) {
             if ($tok[0] == 'Code') {
@@ -81,10 +84,8 @@ class Text_Wiki_Render_Latex extends Text_Wiki_Render {
             "\\begin{document}\n";
     }
     
-    function post()
+    public function post()
     {
         return "\\end{document}\n";
     }
-    
 }
-?>

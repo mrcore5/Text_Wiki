@@ -23,9 +23,9 @@
  * @version    Release: @package_version@
  * @link       http://pear.php.net/package/Text_Wiki_Docbook
  */
-class Text_Wiki_Render_Docbook_Anchor extends Text_Wiki_Render {
-
-    function token($options)
+class Text_Wiki_Render_Docbook_Anchor extends Text_Wiki_Render
+{
+    public function token($options)
     {
         extract($options); // $type, $name
 
@@ -36,5 +36,3 @@ class Text_Wiki_Render_Docbook_Anchor extends Text_Wiki_Render {
         return '</phrase>';
     }
 }
-
-?>

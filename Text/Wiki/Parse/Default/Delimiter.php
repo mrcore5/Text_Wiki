@@ -33,7 +33,8 @@
 *
 */
 
-class Text_Wiki_Parse_Default_Delimiter extends Text_Wiki_Parse {
+class Text_Wiki_Parse_Default_Delimiter extends Text_Wiki_Parse
+{
 
     /**
     *
@@ -47,7 +48,7 @@ class Text_Wiki_Parse_Default_Delimiter extends Text_Wiki_Parse {
     *
     */
 
-    function __construct(&$obj)
+    public function __construct(&$obj)
     {
         parent::__construct($obj);
         $this->regex = '/' . $this->wiki->delim . '/';
@@ -69,7 +70,7 @@ class Text_Wiki_Parse_Default_Delimiter extends Text_Wiki_Parse {
     *
     */
 
-    function process(&$matches)
+    public function process(&$matches)
     {
         return $this->wiki->addToken(
             $this->rule,

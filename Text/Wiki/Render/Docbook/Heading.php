@@ -23,7 +23,8 @@
  * @version    Release: @package_version@
  * @link       http://pear.php.net/package/Text_Wiki_Docbook
  */
-class Text_Wiki_Render_Docbook_Heading extends Text_Wiki_Render {
+class Text_Wiki_Render_Docbook_Heading extends Text_Wiki_Render
+{
 
     /**
      * Configuration keys for this rule
@@ -36,7 +37,7 @@ class Text_Wiki_Render_Docbook_Heading extends Text_Wiki_Render {
      * @access public
      * @var array 'config-key' => mixed config-value
      */
-    var $conf = array(
+    public $conf = array(
         'sections' => array('sect1', 'sect2', 'sect3', 'sect4', 'sect5'),
         'section_after' => 'section',
         'section_final' => 'simplesect'
@@ -48,7 +49,7 @@ class Text_Wiki_Render_Docbook_Heading extends Text_Wiki_Render {
      * @access private
      * @var int current section level
      */
-    var $_level = 0;
+    public $_level = 0;
 
     /**
      * Parsed heading levels stack
@@ -56,7 +57,7 @@ class Text_Wiki_Render_Docbook_Heading extends Text_Wiki_Render {
      * @access private
      * @var array of int parsed heading levels stack
      */
-    var $_stack = array(-1);
+    public $_stack = array(-1);
 
     /**
      * Parsed heading ids stack
@@ -64,7 +65,7 @@ class Text_Wiki_Render_Docbook_Heading extends Text_Wiki_Render {
      * @access private
      * @var array of int parsed heading ids stack
      */
-    var $_id = array(-1);
+    public $_id = array(-1);
 
     /**
      * Final sectioning to apply
@@ -72,7 +73,7 @@ class Text_Wiki_Render_Docbook_Heading extends Text_Wiki_Render {
      * @access private
      * @var array of string section tags
      */
-    var $_section = array();
+    public $_section = array();
 
      /**
      * Constructor.
@@ -85,7 +86,7 @@ class Text_Wiki_Render_Docbook_Heading extends Text_Wiki_Render {
      * @return The render object
      * @access public
      */
-    function __construct(&$obj)
+    public function __construct(&$obj)
     {
         parent::Text_Wiki_Render($obj);
         $max = 0;
@@ -133,7 +134,7 @@ class Text_Wiki_Render_Docbook_Heading extends Text_Wiki_Render {
                     array('type' => 'start',
                             'level' => -1));
         // prepare final sectioning
-        if ( ! ($after = $this->getConf('section_after', ''))) {
+        if (! ($after = $this->getConf('section_after', ''))) {
             $after = $sections[count($sections) - 1];
         }
         for ($i = 0; $i <= $max; $i++) {
@@ -156,7 +157,7 @@ class Text_Wiki_Render_Docbook_Heading extends Text_Wiki_Render {
      * @return string the replacement text
      * @access public
      */
-    function token($options)
+    public function token($options)
     {
         // get nice variable names (id, type, level, terminal)
         $terminal = false;
@@ -182,4 +183,3 @@ class Text_Wiki_Render_Docbook_Heading extends Text_Wiki_Render {
                  "\">\n<title>" : '');
     }
 }
-?>

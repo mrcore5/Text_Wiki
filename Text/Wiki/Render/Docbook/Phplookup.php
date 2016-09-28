@@ -23,7 +23,8 @@
  * @version    Release: @package_version@
  * @link       http://pear.php.net/package/Text_Wiki_Docbook
  */
-class Text_Wiki_Render_Docbook_Phplookup extends Text_Wiki_Render {
+class Text_Wiki_Render_Docbook_Phplookup extends Text_Wiki_Render
+{
 
     /**
     *
@@ -38,7 +39,7 @@ class Text_Wiki_Render_Docbook_Phplookup extends Text_Wiki_Render {
     *
     */
 
-    function token($options)
+    public function token($options)
     {
         $text = trim($options['text']);
 
@@ -56,4 +57,3 @@ class Text_Wiki_Render_Docbook_Phplookup extends Text_Wiki_Render {
         return '<link xlink:href="http://php.net/' . $q . '">' . $text . '</link>';
     }
 }
-?>

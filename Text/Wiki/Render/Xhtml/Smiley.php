@@ -26,7 +26,8 @@
  * @link       http://pear.php.net/package/Text_Wiki
  * @see        Text_Wiki::Text_Wiki_Render()
  */
-class Text_Wiki_Render_Xhtml_Smiley extends Text_Wiki_Render {
+class Text_Wiki_Render_Xhtml_Smiley extends Text_Wiki_Render
+{
 
     /**
      * Configuration keys for this rule
@@ -42,7 +43,7 @@ class Text_Wiki_Render_Xhtml_Smiley extends Text_Wiki_Render {
      * @access public
      * @var array 'config-key' => mixed config-value
      */
-    var $conf = array(
+    public $conf = array(
         'prefix' => 'images/smiles/icon_',
         'extension' => '.gif',
         'css' => null
@@ -56,7 +57,7 @@ class Text_Wiki_Render_Xhtml_Smiley extends Text_Wiki_Render {
       * @param array $options The "options" portion of the token (second element).
       * @return string The text rendered from the token options.
       */
-    function token($options)
+    public function token($options)
     {
         $imageFile = $this->getConf('prefix') . $options['name'] . $this->getConf('extension');
 
@@ -71,4 +72,3 @@ class Text_Wiki_Render_Xhtml_Smiley extends Text_Wiki_Render {
             $this->formatConf(' class="%s"', 'css') . ' />';
     }
 }
-?>

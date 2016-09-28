@@ -23,23 +23,21 @@
  * @version    Release: @package_version@
  * @link       http://pear.php.net/package/Text_Wiki_Docbook
  */
-class Text_Wiki_Render_Docbook extends Text_Wiki_Render {
-
-    var $conf = array(
-    	'translate' => HTML_ENTITIES,
-    	'quotes'    => ENT_COMPAT,
-    	'charset'   => 'ISO-8859-1'
+class Text_Wiki_Render_Docbook extends Text_Wiki_Render
+{
+    public $conf = array(
+        'translate' => HTML_ENTITIES,
+        'quotes'    => ENT_COMPAT,
+        'charset'   => 'ISO-8859-1'
     );
 
-    function pre()
+    public function pre()
     {
         return;
     }
 
-    function post()
+    public function post()
     {
         return;
     }
-
 }
-?>

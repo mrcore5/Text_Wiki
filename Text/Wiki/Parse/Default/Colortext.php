@@ -1,60 +1,61 @@
 <?php
 
 /**
-* 
+*
 * Parses for colorized text.
-* 
+*
 * @category Text
-* 
+*
 * @package Text_Wiki
-* 
+*
 * @author Paul M. Jones <pmjones@php.net>
-* 
+*
 * @license LGPL
-* 
+*
 * @version $Id$
-* 
+*
 */
 
 /**
-* 
+*
 * Parses for colorized text.
-* 
+*
 * @category Text
-* 
+*
 * @package Text_Wiki
-* 
+*
 * @author Paul M. Jones <pmjones@php.net>
-* 
+*
 */
 
-class Text_Wiki_Parse_Default_Colortext extends Text_Wiki_Parse {
+class Text_Wiki_Parse_Default_Colortext extends Text_Wiki_Parse
+{
     
     /**
-    * 
+    *
     * The regular expression used to parse the source text and find
     * matches conforming to this rule.  Used by the parse() method.
-    * 
+    *
     * @access public
-    * 
+    *
     * @var string
-    * 
+    *
     * @see parse()
-    * 
+    *
     */
     
-    var $regex = "/\#\#(.+?)\|(.+?)\#\#/";
+    public $regex = "/\#\#(.+?)\|(.+?)\#\#/";
     
     
     /**
-    * 
+    *
     * Generates a replacement for the matched text.  Token options are:
-    * 
+    *
     * 'type' => ['start'|'end'] The starting or ending point of the
     * emphasized text.  The text itself is left in the source.
-    * 
+    *
     * 'color' => the color indicator
-    * 
+    *
     * @access public
     *
     * @param array &$matches The array of matches from parse().
@@ -65,10 +66,10 @@ class Text_Wiki_Parse_Default_Colortext extends Text_Wiki_Parse {
     *
     */
     
-    function process(&$matches)
+    public function process(&$matches)
     {
         $start = $this->wiki->addToken(
-            $this->rule, 
+            $this->rule,
             array(
                 'type' => 'start',
                 'color' => $matches[1]
@@ -76,7 +77,7 @@ class Text_Wiki_Parse_Default_Colortext extends Text_Wiki_Parse {
         );
         
         $end = $this->wiki->addToken(
-            $this->rule, 
+            $this->rule,
             array(
                 'type' => 'end',
                 'color' => $matches[1]

@@ -1,69 +1,70 @@
 <?php
 
 /**
-* 
+*
 * Looks through parsed text and builds a table of contents.
-* 
+*
 * @category Text
-* 
+*
 * @package Text_Wiki
-* 
+*
 * @author Paul M. Jones <pmjones@php.net>
-* 
+*
 * @license LGPL
-* 
+*
 * @version $Id$
-* 
+*
 */
 
 /**
-* 
+*
 * Looks through parsed text and builds a table of contents.
-* 
+*
 * This class implements a Text_Wiki_Parse_Default to find all heading tokens and
 * build a table of contents.  The [[toc]] tag gets replaced with a list
 * of all the level-2 through level-6 headings.
 *
 * @category Text
-* 
+*
 * @package Text_Wiki
-* 
+*
 * @author Paul M. Jones <pmjones@php.net>
-* 
+*
 */
 
 
-class Text_Wiki_Parse_Default_Toc extends Text_Wiki_Parse {
+class Text_Wiki_Parse_Default_Toc extends Text_Wiki_Parse
+{
     
     
     /**
-    * 
+    *
     * The regular expression used to parse the source text and find
     * matches conforming to this rule.  Used by the parse() method.
-    * 
+    *
     * @access public
-    * 
+    *
     * @var string
-    * 
+    *
     * @see parse()
-    * 
+    *
     */
     
-    var $regex = "/\n\[\[toc( .*)?\]\]\n/m";
+    public $regex = "/\n\[\[toc( .*)?\]\]\n/m";
     
     
     /**
-    * 
+    *
     * Generates a replacement for the matched text.
-    *  
+    *
     * Token options are:
-    * 
+    *
     * 'type' => ['list_start'|'list_end'|'item_start'|'item_end'|'target']
     *
     * 'level' => The heading level (1-6).
     *
     * 'count' => Which entry number this is in the list.
-    * 
+    *
     * @access public
     *
     * @param array &$matches The array of matches from parse().
@@ -72,7 +73,7 @@ class Text_Wiki_Parse_Default_Toc extends Text_Wiki_Parse {
     *
     */
     
-    function process(&$matches)
+    public function process(&$matches)
     {
         $count = 0;
         
@@ -92,7 +93,6 @@ class Text_Wiki_Parse_Default_Toc extends Text_Wiki_Parse {
         );
         
         foreach ($this->wiki->getTokens('Heading') as $key => $val) {
-            
             if ($val[1]['type'] != 'start') {
                 continue;
             }
@@ -127,4 +127,3 @@ class Text_Wiki_Parse_Default_Toc extends Text_Wiki_Parse {
         return "\n$output\n";
     }
 }
-?>

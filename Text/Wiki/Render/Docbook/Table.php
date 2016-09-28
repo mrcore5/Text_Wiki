@@ -23,9 +23,9 @@
  * @version    Release: @package_version@
  * @link       http://pear.php.net/package/Text_Wiki_Docbook
  */
-class Text_Wiki_Render_Docbook_Table extends Text_Wiki_Render {
-
-    var $conf = array(
+class Text_Wiki_Render_Docbook_Table extends Text_Wiki_Render
+{
+    public $conf = array(
         'css_table' => null,
         'css_caption' => null,
         'css_tr' => null,
@@ -47,7 +47,7 @@ class Text_Wiki_Render_Docbook_Table extends Text_Wiki_Render {
     *
     */
 
-    function token($options)
+    public function token($options)
     {
         // make nice variable names (type, attr, span)
         $span = $rowspan = 1;
@@ -137,4 +137,3 @@ class Text_Wiki_Render_Docbook_Table extends Text_Wiki_Render {
         }
     }
 }
-?>

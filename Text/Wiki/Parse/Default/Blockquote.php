@@ -1,69 +1,70 @@
 <?php
 
 /**
-* 
+*
 * Parse for block-quoted text.
-* 
+*
 * @category Text
-* 
+*
 * @package Text_Wiki
-* 
+*
 * @author Paul M. Jones <pmjones@php.net>
-* 
+*
 * @license LGPL
-* 
+*
 * @version $Id$
-* 
+*
 */
 
 /**
-* 
+*
 * Parse for block-quoted text.
-* 
+*
 * Find source text marked as a blockquote, identified by any number of
 * greater-than signs '>' at the start of the line, followed by a space,
 * and then the quote text; each '>' indicates an additional level of
 * quoting.
-* 
+*
 * @category Text
-* 
+*
 * @package Text_Wiki
-* 
+*
 * @author Paul M. Jones <pmjones@php.net>
-* 
+*
 */
 
-class Text_Wiki_Parse_Default_Blockquote extends Text_Wiki_Parse {
+class Text_Wiki_Parse_Default_Blockquote extends Text_Wiki_Parse
+{
     
     
     /**
-    * 
+    *
     * Regex for parsing the source text.
-    * 
+    *
     * @access public
-    * 
+    *
     * @var string
-    * 
+    *
     * @see parse()
-    * 
+    *
     */
     
-    var $regex = '/\n(\>+ .*\n)(?!\>+ )/Us';
+    public $regex = '/\n(\>+ .*\n)(?!\>+ )/Us';
     
     
     /**
-    * 
+    *
     * Generates a replacement for the matched text.
-    * 
+    *
     * Token options are:
-    * 
+    *
     * 'type' =>
     *     'start' : the start of a blockquote
     *     'end'   : the end of a blockquote
     *
     * 'level' => the indent level (0 for the first level, 1 for the
     * second, etc)
-    * 
+    *
     * @access public
     *
     * @param array &$matches The array of matches from parse().
@@ -73,7 +74,7 @@ class Text_Wiki_Parse_Default_Blockquote extends Text_Wiki_Parse {
     *
     */
     
-    function process(&$matches)
+    public function process(&$matches)
     {
         // the replacement text we will return to parse()
         $return = '';
@@ -99,7 +100,7 @@ class Text_Wiki_Parse_Default_Blockquote extends Text_Wiki_Parse {
             // $val[0] is the full matched line
             // $val[1] is the number of initial '>' chars (indent level)
             // $val[2] is the quote text
-            
+
             // we number levels starting at 1, not zero
             $level = strlen($val[1]);
             
@@ -112,7 +113,7 @@ class Text_Wiki_Parse_Default_Blockquote extends Text_Wiki_Parse {
                 
                 // ...and add a start token to the return.
                 $return .= $this->wiki->addToken(
-                    $this->rule, 
+                    $this->rule,
                     array(
                         'type' => 'start',
                         'level' => $curLevel
@@ -127,10 +128,10 @@ class Text_Wiki_Parse_Default_Blockquote extends Text_Wiki_Parse {
                 // current indent level, we need to end list types.
                 // continue adding end-list tokens until the stack count
                 // and the indent level are the same.
-                
+
                 $return .= $this->wiki->addToken(
-                    $this->rule, 
-                    array (
+                    $this->rule,
+                    array(
                         'type' => 'end',
                         'level' => $curLevel
                     )
@@ -146,8 +147,8 @@ class Text_Wiki_Parse_Default_Blockquote extends Text_Wiki_Parse {
         // close the pending levels
         while ($curLevel > 0) {
             $return .= $this->wiki->addToken(
-                $this->rule, 
-                array (
+                $this->rule,
+                array(
                     'type' => 'end',
                     'level' => $curLevel
                 )

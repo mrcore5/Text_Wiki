@@ -32,7 +32,7 @@ EOT;
         $html = $this->wiki->transform($text);
 
         // strip all whitespace to make assertEquals() easier
-        $html = preg_replace('/\s+/','',$html);
+        $html = preg_replace('/\s+/', '', $html);
 
         $assertion  = '<ul><li>level1<ul><li>level2</li></ul></li>';
         $assertion .= '<li>level1<ul><li>level2</li></ul></li></ul>';

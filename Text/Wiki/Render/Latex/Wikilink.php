@@ -4,7 +4,7 @@ require_once 'Text/Wiki/Render.php';
 
 class Text_Wiki_Render_Latex_Wikilink extends Text_Wiki_Render
 {
-    var $conf = array(
+    public $conf = array(
         'pages' => array(),
         'view_url' => 'http://example.com/index.php?page=%s',
         'new_url'  => 'http://example.com/new.php?page=%s',
@@ -24,7 +24,7 @@ class Text_Wiki_Render_Latex_Wikilink extends Text_Wiki_Render
     *
     */
 
-    function token($options)
+    public function token($options)
     {
         // make nice variable names (page, anchor, text)
         extract($options);
@@ -60,4 +60,3 @@ class Text_Wiki_Render_Latex_Wikilink extends Text_Wiki_Render
         return $text . '\footnote{' . $href . '}';
     }
 }
-?>

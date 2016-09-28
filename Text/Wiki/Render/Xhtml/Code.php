@@ -23,9 +23,9 @@
  * @version    Release: @package_version@
  * @link       http://pear.php.net/package/Text_Wiki
  */
-class Text_Wiki_Render_Xhtml_Code extends Text_Wiki_Render {
-
-    var $conf = array(
+class Text_Wiki_Render_Xhtml_Code extends Text_Wiki_Render
+{
+    public $conf = array(
         'css'      => null, // class for <pre>
         'css_code' => null, // class for generic <code>
         'css_php'  => null, // class for PHP <code>
@@ -46,7 +46,7 @@ class Text_Wiki_Render_Xhtml_Code extends Text_Wiki_Render {
     *
     */
 
-    function token($options)
+    public function token($options)
     {
         $text = $options['text'];
         $attr = $options['attr'];
@@ -101,7 +101,6 @@ class Text_Wiki_Render_Xhtml_Code extends Text_Wiki_Render {
 
             // done
             $text = "<pre$css>$text</pre>";
-
         } elseif ($type == 'html' || $type == 'xhtml') {
 
             // HTML code example:
@@ -112,7 +111,6 @@ class Text_Wiki_Render_Xhtml_Code extends Text_Wiki_Render {
             $text = "<html>\n$text\n</html>";
             $text = $this->textEncode($text);
             $text = "<pre$css><code$css_html>$text</code></pre>";
-
         } else {
             // generic code example:
             // convert tabs to four spaces,
@@ -130,4 +128,3 @@ class Text_Wiki_Render_Xhtml_Code extends Text_Wiki_Render {
         return "\n$text\n\n";
     }
 }
-?>

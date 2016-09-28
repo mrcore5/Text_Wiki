@@ -1,25 +1,25 @@
 <?php
 
 /**
-* 
+*
 * Parses for table markup.
-* 
+*
 * @category Text
-* 
+*
 * @package Text_Wiki
-* 
+*
 * @author Paul M. Jones <pmjones@php.net>
-* 
+*
 * @license LGPL
-* 
+*
 * @version $Id$
-* 
+*
 */
 
 /**
-* 
+*
 * Parses for table markup.
-* 
+*
 * This class implements a Text_Wiki_Parse_Default to find source text marked as a
 * set of table rows, where a line start and ends with double-pipes (||)
 * and uses double-pipes to separate table cells.  The rows must be on
@@ -27,38 +27,39 @@
 * indicates the beginning of a new table.
 *
 * @category Text
-* 
+*
 * @package Text_Wiki
-* 
+*
 * @author Paul M. Jones <pmjones@php.net>
-* 
+*
 */
 
-class Text_Wiki_Parse_Default_Table extends Text_Wiki_Parse {
+class Text_Wiki_Parse_Default_Table extends Text_Wiki_Parse
+{
     
     
     /**
-    * 
+    *
     * The regular expression used to parse the source text and find
     * matches conforming to this rule.  Used by the parse() method.
-    * 
+    *
     * @access public
-    * 
+    *
     * @var string
-    * 
+    *
     * @see parse()
-    * 
+    *
     */
     
-    var $regex = '/\n((\|\|).*)(\n)(?!(\|\|))/Us';
+    public $regex = '/\n((\|\|).*)(\n)(?!(\|\|))/Us';
     
     
     /**
-    * 
+    *
     * Generates a replacement for the matched text.
-    * 
+    *
     * Token options are:
-    * 
+    *
     * 'type' =>
     *     'table_start' : the start of a bullet list
     *     'table_end'   : the end of a bullet list
@@ -66,15 +67,15 @@ class Text_Wiki_Parse_Default_Table extends Text_Wiki_Parse {
     *     'row_end'   : the end of a number list
     *     'cell_start'   : the start of item text (bullet or number)
     *     'cell_end'     : the end of item text (bullet or number)
-    * 
+    *
     * 'cols' => the number of columns in the table (for 'table_start')
-    * 
+    *
     * 'rows' => the number of rows in the table (for 'table_start')
-    * 
+    *
     * 'span' => column span (for 'cell_start')
-    * 
+    *
     * 'attr' => column attribute flag (for 'cell_start')
-    * 
+    *
     * @access public
     *
     * @param array &$matches The array of matches from parse().
@@ -84,7 +85,7 @@ class Text_Wiki_Parse_Default_Table extends Text_Wiki_Parse {
     *
     */
     
-    function process(&$matches)
+    public function process(&$matches)
     {
         // our eventual return value
         $return = '';
@@ -139,11 +140,10 @@ class Text_Wiki_Parse_Default_Table extends Text_Wiki_Parse {
                     // add to the span and loop to the next cell
                     $span += 1;
                     continue;
-                    
                 } else {
                     
                     // this cell has content.
-                    
+
                     // find any special "attr"ibute cell markers
                     if (substr($cell[$i], 0, 2) == '> ') {
                         // right-align
@@ -166,8 +166,8 @@ class Text_Wiki_Parse_Default_Table extends Text_Wiki_Parse {
                     
                     // start a new cell...
                     $return .= $this->wiki->addToken(
-                        $this->rule, 
-                        array (
+                        $this->rule,
+                        array(
                             'type' => 'cell_start',
                             'attr' => $attr,
                             'span' => $span
@@ -179,8 +179,8 @@ class Text_Wiki_Parse_Default_Table extends Text_Wiki_Parse {
                     
                     // ...and end the cell.
                     $return .= $this->wiki->addToken(
-                        $this->rule, 
-                        array (
+                        $this->rule,
+                        array(
                             'type' => 'cell_end',
                             'attr' => $attr,
                             'span' => $span
@@ -190,7 +190,6 @@ class Text_Wiki_Parse_Default_Table extends Text_Wiki_Parse {
                     // reset the span.
                     $span = 1;
                 }
-                    
             }
             
             // end the row
@@ -198,10 +197,9 @@ class Text_Wiki_Parse_Default_Table extends Text_Wiki_Parse {
                 $this->rule,
                 array('type' => 'row_end')
             );
-            
         }
         
-        // wrap the return value in start and end tokens 
+        // wrap the return value in start and end tokens
         $return =
             $this->wiki->addToken(
                 $this->rule,
@@ -223,4 +221,3 @@ class Text_Wiki_Parse_Default_Table extends Text_Wiki_Parse {
         return "\n$return\n\n";
     }
 }
-?>

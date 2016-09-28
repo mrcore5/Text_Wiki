@@ -29,13 +29,13 @@ if (in_array(php_sapi_name(), array('cli', 'cgi'))) {
     if (!isset($_SERVER['argv'][3]) or !is_readable($sou = $_SERVER['argv'][3])) {
         die("Enter a text file to be processed as 3d argument\n First and second are parser and renderer\n");
     }
-    $source = file_get_contents ($sou);
+    $source = file_get_contents($sou);
 } else {
     $html = true;
     $elist = findExamples(dirname(__FILE__));
     if (isset($_REQUEST['example'])
         && in_array($_REQUEST['exchoice'], $elist)) {
-        $_REQUEST['source'] = file_get_contents ($_REQUEST['exchoice']);
+        $_REQUEST['source'] = file_get_contents($_REQUEST['exchoice']);
         if (preg_match('#(\b'.implode('\b|\b', $plist).'\b)#',
                          $_REQUEST['source'], $match)) {
             $_REQUEST['parser'] = $match[1];
@@ -45,7 +45,7 @@ if (in_array(php_sapi_name(), array('cli', 'cgi'))) {
     foreach (array('parser'=>$plist[0], 'render'=>$rlist[0],
                    'exchoice'=>($elist ? $elist[0] : ''), 'source'=>'')
              as $fld=>$def) {
-        if(!isset($_REQUEST[$fld])) {
+        if (!isset($_REQUEST[$fld])) {
             $_REQUEST[$fld] = $def;
         }
         $$fld = $_REQUEST[$fld];
@@ -93,22 +93,24 @@ if ($html) {
         echo $result;
     }
 }
-function bldOpt($name, $list) {
+function bldOpt($name, $list)
+{
     $ret = '';
-    foreach($list as $opt) {
-          $ret .= "<option value='{$opt}'".
+    foreach ($list as $opt) {
+        $ret .= "<option value='{$opt}'".
             ($opt == $_REQUEST[$name]? " selected" : "").
             ">{$opt}</option>\n";
     }
     return $ret;
 }
-function bldHtml($result, $plist, $rlist, $elist) {
+function bldHtml($result, $plist, $rlist, $elist)
+{
     $optparser = bldOpt('parser', $plist);
     $optrender = bldOpt('render', $rlist);
     $optexample = bldOpt('exchoice', $elist);
     if (PEAR::isError($result)) {
         $hresult = '<span class="error">' .
-            nl2br(htmlentities($result->toString ())) . '</span>';
+            nl2br(htmlentities($result->toString())) . '</span>';
         $result = '';
     } else {
         $hresult = nl2br(htmlentities($result));
@@ -169,7 +171,8 @@ Translate from
 </html>
 EOT;
 }
-function findExamples($dir=null) {
+function findExamples($dir=null)
+{
     $ret = array();
     $dh=opendir($dir? $dir : '.');
     while ($subfil = readdir($dh)) {
@@ -181,4 +184,3 @@ function findExamples($dir=null) {
     closedir($dh);
     return $ret;
 }
-?>

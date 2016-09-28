@@ -23,9 +23,9 @@
  * @version    Release: @package_version@
  * @link       http://pear.php.net/package/Text_Wiki_Docbook
  */
-class Text_Wiki_Render_Docbook_SpecialChar extends Text_Wiki_Render {
-
-    var $types = array('~bs~' => '&#092;',
+class Text_Wiki_Render_Docbook_Specialchar extends Text_Wiki_Render
+{
+    public $types = array('~bs~' => '&#092;',
                        '~hs~' => '&#160;', // &nbsp;
                        '~amp~' => '&#038;', // &amp;
                        '~ldq~' => '&#8220;', // &ldquo;
@@ -39,7 +39,7 @@ class Text_Wiki_Render_Docbook_SpecialChar extends Text_Wiki_Render {
                        '~lt~' => '&#060;', // &lt;
                        '~gt~' => '&#062'); // &gt;
 
-    function token($options)
+    public function token($options)
     {
         if (isset($this->types[$options['char']])) {
             return $this->types[$options['char']];
@@ -48,5 +48,3 @@ class Text_Wiki_Render_Docbook_SpecialChar extends Text_Wiki_Render {
         }
     }
 }
-
-?>

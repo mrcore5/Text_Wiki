@@ -30,7 +30,8 @@
  * @link       http://pear.php.net/package/Text_Wiki
  * @see        Text_Wiki_Parse_Default::Text_Wiki_Parse_Default()
  */
-class Text_Wiki_Parse_Default_Smiley extends Text_Wiki_Parse {
+class Text_Wiki_Parse_Default_Smiley extends Text_Wiki_Parse
+{
 
     /**
      * Configuration keys for this rule
@@ -46,7 +47,7 @@ class Text_Wiki_Parse_Default_Smiley extends Text_Wiki_Parse {
      * @access public
      * @var array 'config-key' => mixed config-value
      */
-    var $conf = array(
+    public $conf = array(
         'smileys' => array(
             ':D'        => array('biggrin', 'Very Happy', ':grin:'),
             ':)'        => array('smile', 'Smile', '(:'),
@@ -81,7 +82,7 @@ class Text_Wiki_Parse_Default_Smiley extends Text_Wiki_Parse {
      * @access private
      * @var array 'config-key' => mixed config-value
      */
-    var $_smileys = array();
+    public $_smileys = array();
 
      /**
      * Constructor.
@@ -91,7 +92,7 @@ class Text_Wiki_Parse_Default_Smiley extends Text_Wiki_Parse {
      * @return The parser object
      * @access public
      */
-    function __construct(&$obj)
+    public function __construct(&$obj)
     {
         $default = $this->conf;
         parent::__construct($obj);
@@ -117,7 +118,8 @@ class Text_Wiki_Parse_Default_Smiley extends Text_Wiki_Parse {
                     continue;
                 }
                 if ($autoNose && ($len === 2)) {
-                    $variante = $cur{0} . '-' . $cur{1};
+                    $variante = $cur{0}
+                    . '-' . $cur{1};
                     $this->_smileys[$variante] = &$this->_smileys[$smiley];
                     $cur = preg_quote($cur{0}, '#') . '-?' . preg_quote($cur{1}, '#');
                 } else {
@@ -143,7 +145,7 @@ class Text_Wiki_Parse_Default_Smiley extends Text_Wiki_Parse {
      * @return string Delimited token representing the smiley
      * @access public
      */
-    function process(&$matches)
+    public function process(&$matches)
     {
         // tokenize
         return $this->wiki->addToken($this->rule,
@@ -154,4 +156,3 @@ class Text_Wiki_Parse_Default_Smiley extends Text_Wiki_Parse {
             ));
     }
 }
-?>

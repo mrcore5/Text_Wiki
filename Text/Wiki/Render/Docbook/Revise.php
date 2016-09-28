@@ -23,9 +23,9 @@
  * @version    Release: @package_version@
  * @link       http://pear.php.net/package/Text_Wiki_Docbook
  */
-class Text_Wiki_Render_Docbook_Revise extends Text_Wiki_Render {
-
-    var $conf = array(
+class Text_Wiki_Render_Docbook_Revise extends Text_Wiki_Render
+{
+    public $conf = array(
         'role_ins' => 'inserted',
         'role_del' => 'deleted'
     );
@@ -43,19 +43,18 @@ class Text_Wiki_Render_Docbook_Revise extends Text_Wiki_Render {
     *
     */
 
-    function token($options)
+    public function token($options)
     {
         switch ($options['type']) {
             case 'del_start':
-                return '<emphasis' . 
+                return '<emphasis' .
                     (($role = $this->getConf('role_del', 'deleted')) ?
                     ' role="' . $role . '"' : '') . '>';
             case 'ins_start':
-                return '<emphasis' . 
+                return '<emphasis' .
                     (($role = $this->getConf('role_ins', 'inserted')) ?
                     ' role="' . $role . '"' : '') . '>';
         }
         return '</emphasis>';
     }
 }
-?>

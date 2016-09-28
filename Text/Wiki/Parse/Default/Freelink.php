@@ -39,9 +39,9 @@
 *
 */
 
-class Text_Wiki_Parse_Default_Freelink extends Text_Wiki_Parse {
-
-    var $conf = array (
+class Text_Wiki_Parse_Default_Freelink extends Text_Wiki_Parse
+{
+    public $conf = array(
                        'utf-8' => false
     );
 
@@ -56,7 +56,7 @@ class Text_Wiki_Parse_Default_Freelink extends Text_Wiki_Parse {
     *
     */
 
-    function __construct(&$obj)
+    public function __construct(&$obj)
     {
         parent::__construct($obj);
         if ($this->getConf('utf-8')) {
@@ -104,7 +104,7 @@ class Text_Wiki_Parse_Default_Freelink extends Text_Wiki_Parse {
     *
     */
 
-    function process(&$matches)
+    public function process(&$matches)
     {
         // use nice variable names
         $page = $matches[1];
@@ -131,4 +131,3 @@ class Text_Wiki_Parse_Default_Freelink extends Text_Wiki_Parse {
         return $this->wiki->addToken($this->rule, $options);
     }
 }
-?>

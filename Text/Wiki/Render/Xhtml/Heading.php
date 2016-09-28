@@ -23,9 +23,9 @@
  * @version    Release: @package_version@
  * @link       http://pear.php.net/package/Text_Wiki
  */
-class Text_Wiki_Render_Xhtml_Heading extends Text_Wiki_Render {
-
-    var $conf = array(
+class Text_Wiki_Render_Xhtml_Heading extends Text_Wiki_Render
+{
+    public $conf = array(
         'css_h1' => null,
         'css_h2' => null,
         'css_h3' => null,
@@ -34,14 +34,14 @@ class Text_Wiki_Render_Xhtml_Heading extends Text_Wiki_Render {
         'css_h6' => null
     );
 
-    function token($options)
+    public function token($options)
     {
-    	$collapse = null;
+        $collapse = null;
         static $jsOutput = false;
         // get nice variable names (id, type, level)
         extract($options);
 
-        switch($type) {
+        switch ($type) {
         case 'start':
             $css = $this->formatConf(' class="%s"', "css_h$level");
             return '
@@ -85,4 +85,3 @@ function hideTOC(id) {
         }
     }
 }
-?>

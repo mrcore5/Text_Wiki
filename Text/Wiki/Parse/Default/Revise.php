@@ -28,7 +28,8 @@
 *
 */
 
-class Text_Wiki_Parse_Default_Revise extends Text_Wiki_Parse {
+class Text_Wiki_Parse_Default_Revise extends Text_Wiki_Parse
+{
 
 
     /**
@@ -44,7 +45,7 @@ class Text_Wiki_Parse_Default_Revise extends Text_Wiki_Parse {
     *
     */
 
-    var $regex = "/\@\@({*?.*}*?)\@\@/U";
+    public $regex = "/\@\@({*?.*}*?)\@\@/U";
 
 
     /**
@@ -57,7 +58,7 @@ class Text_Wiki_Parse_Default_Revise extends Text_Wiki_Parse {
     *
     */
 
-    var $conf = array(
+    public $conf = array(
         'delmark' => '---',
         'insmark' => '+++'
     );
@@ -79,7 +80,7 @@ class Text_Wiki_Parse_Default_Revise extends Text_Wiki_Parse {
     *
     */
 
-    function process(&$matches)
+    public function process(&$matches)
     {
         $output = '';
         $src = $matches[1];
@@ -142,4 +143,3 @@ class Text_Wiki_Parse_Default_Revise extends Text_Wiki_Parse {
         return $output;
     }
 }
-?>

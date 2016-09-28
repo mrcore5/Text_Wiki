@@ -23,13 +23,13 @@
  * @version    Release: @package_version@
  * @link       http://pear.php.net/package/Text_Wiki_Docbook
  */
-class Text_Wiki_Render_Docbook_List extends Text_Wiki_Render {
-
-    var $conf = array(
+class Text_Wiki_Render_Docbook_List extends Text_Wiki_Render
+{
+    public $conf = array(
         'mark' => null
     );
 
-    var $numeration = array(
+    public $numeration = array(
         '1' => 'arabic',
         'i' => 'lowerroman',
         'I' => 'upperroman',
@@ -53,7 +53,7 @@ class Text_Wiki_Render_Docbook_List extends Text_Wiki_Render {
     *
     */
 
-    function token($options)
+    public function token($options)
     {
         // make nice variables (type, level, count)
         extract($options);
@@ -70,7 +70,7 @@ class Text_Wiki_Render_Docbook_List extends Text_Wiki_Render {
         case 'number_list_start':
             if (empty($format) || !isset($this->numeration[$format])) {
                 $format = '';
-            } else  {
+            } else {
                 $format = ' numeration="' . $this->numeration[$format] . '"';
             }
             return '<orderedlist' . $format . ">\n";
@@ -92,4 +92,3 @@ class Text_Wiki_Render_Docbook_List extends Text_Wiki_Render {
         }
     }
 }
-?>

@@ -42,9 +42,9 @@
 *
 */
 
-class Text_Wiki_Parse_Default_Wikilink extends Text_Wiki_Parse {
-
-    var $conf = array (
+class Text_Wiki_Parse_Default_Wikilink extends Text_Wiki_Parse
+{
+    public $conf = array(
                        'ext_chars' => false,
                        'utf-8' => false
     );
@@ -62,28 +62,28 @@ class Text_Wiki_Parse_Default_Wikilink extends Text_Wiki_Parse {
     *
     */
 
-    function __construct(&$obj)
+    public function __construct(&$obj)
     {
         parent::__construct($obj);
 
         if ($this->getConf('utf-8')) {
-			$upper = 'A-Z\p{Lu}';
-			$lower = 'a-z0-9\p{Ll}';
-			$either = 'A-Za-z0-9\p{L}';
-        } else if ($this->getConf('ext_chars')) {
-        	// use an extended character set; this should
-        	// allow for umlauts and so on.  taken from the
-        	// Tavi project defaults.php file.
-			$upper = 'A-Z\xc0-\xde';
-			$lower = 'a-z0-9\xdf-\xfe';
-			$either = 'A-Za-z0-9\xc0-\xfe';
-		} else {
-			// the default character set, should be fine
-			// for most purposes.
-			$upper = "A-Z";
-			$lower = "a-z0-9";
-			$either = "A-Za-z0-9";
-		}
+            $upper = 'A-Z\p{Lu}';
+            $lower = 'a-z0-9\p{Ll}';
+            $either = 'A-Za-z0-9\p{L}';
+        } elseif ($this->getConf('ext_chars')) {
+            // use an extended character set; this should
+            // allow for umlauts and so on.  taken from the
+            // Tavi project defaults.php file.
+            $upper = 'A-Z\xc0-\xde';
+            $lower = 'a-z0-9\xdf-\xfe';
+            $either = 'A-Za-z0-9\xc0-\xfe';
+        } else {
+            // the default character set, should be fine
+            // for most purposes.
+            $upper = "A-Z";
+            $lower = "a-z0-9";
+            $either = "A-Za-z0-9";
+        }
 
         // build the regular expression for finding WikiPage names.
         $this->regex =
@@ -113,7 +113,7 @@ class Text_Wiki_Parse_Default_Wikilink extends Text_Wiki_Parse {
     *
     */
 
-    function parse()
+    public function parse()
     {
         // described wiki links
         $tmp_regex = '/\[' . $this->regex . ' (.+?)\]/'.($this->getConf('utf-8') ? 'u' : '');
@@ -125,12 +125,12 @@ class Text_Wiki_Parse_Default_Wikilink extends Text_Wiki_Parse {
 
         // standalone wiki links
         if ($this->getConf('utf-8')) {
-			$either = 'A-Za-z0-9\p{L}';
-        } else if ($this->getConf('ext_chars')) {
-			$either = "A-Za-z0-9\xc0-\xfe";
-		} else {
-			$either = "A-Za-z0-9";
-		}
+            $either = 'A-Za-z0-9\p{L}';
+        } elseif ($this->getConf('ext_chars')) {
+            $either = "A-Za-z0-9\xc0-\xfe";
+        } else {
+            $either = "A-Za-z0-9";
+        }
 
         $tmp_regex = "/(^|[^{$either}\-_]){$this->regex}/".($this->getConf('utf-8') ? 'u' : '');
         $this->wiki->source = preg_replace_callback(
@@ -154,7 +154,7 @@ class Text_Wiki_Parse_Default_Wikilink extends Text_Wiki_Parse {
     *
     */
 
-    function processDescr(&$matches)
+    public function processDescr(&$matches)
     {
         // set the options
         $options = array(
@@ -182,7 +182,7 @@ class Text_Wiki_Parse_Default_Wikilink extends Text_Wiki_Parse {
     *
     */
 
-    function process(&$matches)
+    public function process(&$matches)
     {
         // when prefixed with !, it's explicitly not a wiki link.
         // return everything as it was.
@@ -201,4 +201,3 @@ class Text_Wiki_Parse_Default_Wikilink extends Text_Wiki_Parse {
         return $matches[1] . $this->wiki->addToken($this->rule, $options);
     }
 }
-?>
