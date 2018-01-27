@@ -25,18 +25,14 @@
     "include-path": [
         "./"
     ],
-    "license": "LGPL",
+    "license": "LGPLLR",
     "name": "mrcore/text_wiki",
     "type": "library",
     "support": {
         "issues": "http://pear.php.net/bugs/search.php?cmd=display&package_name[]=Text_Wiki",
         "source": "https://github.com/pear/Text_Wiki"
     },
-    "type": "library",
     "require": {
-        "pear/pear_exception": "*"
-    },
-    "require-dev": {
-        "phpunit/phpunit": "*"
+        "pear/pear_exception": "~1.0"
     }
 }
