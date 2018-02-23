@@ -18,7 +18,7 @@
             "email": "del@babel.com.au",
             "name": "Del Elson",
             "role": "Developer"
-        },
+        }
     ],
     "require": {
         "pear/pear_exception": "~1.0"
