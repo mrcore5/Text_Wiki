@@ -1,4 +1,8 @@
 {
+    "name": "mrcore/text-wiki",
+    "description": "Mrcore fork and customization of http://pear.php.net/package/Text_Wiki",
+    "license": "LGPLLR",
+    "type": "library",
     "authors": [
         {
             "email": "pmjones@ciaweb.net",
@@ -14,25 +18,17 @@
             "email": "del@babel.com.au",
             "name": "Del Elson",
             "role": "Developer"
-        }
+        },
     ],
+    "require": {
+        "pear/pear_exception": "~1.0"
+    },
     "autoload": {
         "psr-0": {
             "Text": "./"
         }
     },
-    "description": "More info available on: http://pear.php.net/package/Text_Wiki",
     "include-path": [
         "./"
-    ],
-    "license": "LGPLLR",
-    "name": "mrcore/text_wiki",
-    "type": "library",
-    "support": {
-        "issues": "http://pear.php.net/bugs/search.php?cmd=display&package_name[]=Text_Wiki",
-        "source": "https://github.com/pear/Text_Wiki"
-    },
-    "require": {
-        "pear/pear_exception": "~1.0"
-    }
+    ]
 }
