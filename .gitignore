@@ -1,4 +1,12 @@
-# composer related
-composer.lock
-composer.phar
-vendor
+/node_modules
+/vendor
+/.idea
+/.vscode
+/.vagrant
+npm-debug.log
+yarn-error.log
+.phpunit.result.cache
+.DS_Store
+Thumbs.db
+.nfs*
+.swp
